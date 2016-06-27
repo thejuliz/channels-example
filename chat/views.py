@@ -39,3 +39,7 @@ def chat_room(request, label):
         'room': room,
         'messages': messages,
     })
+
+# Create your views here.
+def chat(request):
+    return render(request, 'index.html')
