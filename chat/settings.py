@@ -55,8 +55,14 @@ TEMPLATES = (
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default="postgres://yguuwegjeaghbj:G1Luh7IlyeDjtl-XwgHYzJKPOl@ec2-54-243-200-37.compute-1.amazonaws.com:5432/d5eugqf8mvtvmg", conn_max_age=500)
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+    }
 }
+
+# Update database configuration with $DATABASE_URL.
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 AUTH_PASSWORD_VALIDATORS = (
     {
