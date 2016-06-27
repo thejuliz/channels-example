@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from channels import Group
 from channels.sessions import channel_session
 
@@ -13,7 +12,7 @@ def ws_connect(message):
 
 # Connected to websocket.receive
 @channel_session
-def ws_message(message):
+def ws_receive(message):
     Group("chat-%s" % message.channel_session['room']).send({
         "text": message['text'],
     })

@@ -26,9 +26,9 @@ def ws_connect(message):
         log.debug('ws room does not exist label=%s', label)
         return
 
-    log.debug('chat connect room=%s client=%s:%s', 
+    log.debug('chat connect room=%s client=%s:%s',
         room.label, message['client'][0], message['client'][1])
-    
+
     # Need to be explicit about the channel layer so that testability works
     # This may be a FIXME?
     Group('chat-'+label, channel_layer=message.channel_layer).add(message.reply_channel)
@@ -55,13 +55,13 @@ def ws_receive(message):
     except ValueError:
         log.debug("ws message isn't json text=%s", text)
         return
-    
+
     if set(data.keys()) != set(('handle', 'message')):
         log.debug("ws message unexpected format data=%s", data)
         return
 
     if data:
-        log.debug('chat message room=%s handle=%s message=%s', 
+        log.debug('chat message room=%s handle=%s message=%s',
             room.label, data['handle'], data['message'])
         m = room.messages.create(**data)
 
