@@ -400,7 +400,8 @@
             }
 
             function initWebSocket() {
-                ws = new WebSocket("ws://" + window.location.host + "/test_room/");
+                var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+                ws = new WebSocket(ws_scheme + "://" + window.location.host + "/test_room/");
                 ws.onmessage = function(e) {
                     onMessage(e)
                 }
