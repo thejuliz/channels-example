@@ -42,4 +42,4 @@ def chat_room(request, label):
 
 # Create your views here.
 def chat(request):
-    return render(request, 'index.html')
+    return render(request, 'chat.html')
