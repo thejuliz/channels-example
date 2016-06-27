@@ -432,7 +432,7 @@
             function addMessageBox(text, user, direction) {
                 var date = new Date();
 
-                var template = '<li class="' + direction + ' clearfix"><span class="chat-img pull-' + direction + '"><img src="http://bootdey.com/img/Content/user_' + user.id + '.jpg" alt="User Avatar"></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">' + user.user + '</strong><small class="pull-right text-muted"><i class="fa fa-clock-o"></i> ' + date.getHours() + ":" + date.getMinutes() +'</small></div><p>' + text + '</p></div></li>'
+                var template = '<li class="' + direction + ' clearfix"><span class="chat-img pull-' + direction + '"><img src="http://bootdey.com/img/Content/user_' + user.id + '.jpg" alt="User Avatar"></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">' + user.user + '</strong><small class="pull-right text-muted"><i class="fa fa-clock-o"></i> ' + pad(date.getHours(), 2) + ":" + pad(date.getMinutes(), 2) +'</small></div><p>' + text + '</p></div></li>'
 
                 $('#chatBox').append(template);
                 $(window).scrollTop($(document).height());
@@ -441,7 +441,7 @@
             function showWelcomeMessage(user) {
                 var text = "Welcome " + user.user;
                 var date = new Date();
-                var template = '<li class="right clearfix"><span class="chat-img pull-right"><img src="http://bootdey.com/img/Content/user_5.jpg" alt="User Avatar"></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">System</strong><small class="pull-right text-muted"><i class="fa fa-clock-o"></i> ' + date.getHours() + ":" + date.getMinutes() +'</small></div><p>' + text + '</p></div></li>'
+                var template = '<li class="right clearfix"><span class="chat-img pull-right"><img src="http://bootdey.com/img/Content/user_5.jpg" alt="User Avatar"></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">System</strong><small class="pull-right text-muted"><i class="fa fa-clock-o"></i> ' + pad(date.getHours(), 2) + ":" + pad(date.getMinutes(), 2) +'</small></div><p>' + text + '</p></div></li>'
 
                 $('#chatBox').append(template);
             }
@@ -455,6 +455,12 @@
                 }
 
                 return { user: "John Doe", id: 1 };
+            }
+
+            function pad(num, size) {
+                var s = num+"";
+                while (s.length < size) s = "0" + s;
+                return s;
             }
         </script>
     </body>
