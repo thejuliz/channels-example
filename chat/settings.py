@@ -54,11 +54,20 @@ TEMPLATES = (
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+# HEROKU
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
     }
 }
+
+#DEV
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 # Update database configuration with $DATABASE_URL.
 db_from_env = dj_database_url.config(conn_max_age=500)
@@ -105,6 +114,7 @@ STATICFILES_DIRS = [
 ]
 
 # Channel settings
+# Heroku
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "asgi_redis.RedisChannelLayer",
@@ -114,6 +124,17 @@ CHANNEL_LAYERS = {
         "ROUTING": "chat.routing.channel_routing",
     },
 }
+
+# Dev
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "asgi_redis.RedisChannelLayer",
+#         "CONFIG": {
+#             "hosts": [("localhost", 6379)],
+#         },
+#         "ROUTING": "chat.routing.channel_routing",
+#     },
+# }
 
 # Logging
 LOGGING = {
